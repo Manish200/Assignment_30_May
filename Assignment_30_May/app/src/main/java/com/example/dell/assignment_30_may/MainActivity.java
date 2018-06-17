@@ -48,7 +48,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         " Music Start the activity ", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
-                mediaPlayer.stop();
+                if(mediaPlayer.isPlaying()) {
+                    mediaPlayer.stop();
+                    mediaPlayer.reset();
+                }
                 mediaPlayer.start();
                 break;
             case R.id.stop :
@@ -80,7 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         " Music Restart the activity ", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
-                mediaPlayer.seekTo(length);
+                mediaPlayer.stop();
+                mediaPlayer.reset();
                 mediaPlayer.start();
                 break;
             case R.id.destroy :
@@ -93,5 +97,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
                 default: break;
         }
+        setTitle("Music Player Life Cycle");
     }
 }
